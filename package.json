@@ -18,10 +18,10 @@
     "build": "rm -rf dist && tsc --build tsconfig.json"
   },
   "dependencies": {
-    "@scatterjs/core": "^2.7.54",
-    "@scatterjs/eosjs2": "^1.5.36",
-    "elliptic": "^6.5.3",
-    "eosjs": "^21.0.3",
+    "@scatterjs/core": "https://github.com/prospectors/scatterjs-core",
+    "@scatterjs/eosjs2": "https://github.com/prospectors/scatterjs-eosjs2",
+    "elliptic": "^6.5.4",
+    "eosjs": "^22.1.0",
     "universal-authenticator-library": "^0.3.0"
   },
   "devDependencies": {
