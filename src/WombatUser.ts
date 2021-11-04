@@ -3,6 +3,7 @@ import {ec as EC} from 'elliptic'
 import {Signature, PublicKey} from 'eosjs/dist/eosjs-jssig'
 import {Chain, SignTransactionResponse, UALErrorType, User} from 'universal-authenticator-library'
 import {UALWombatError} from './UALWombatError'
+import {TransactConfig, Transaction} from "eosjs/dist/eosjs-api-interfaces";
 
 const {KeyType} = Numeric
 const ec = new EC('secp256k1')
@@ -34,16 +35,16 @@ export class WombatUser extends User {
     }
 
     public async signTransaction(
-        transaction: any,
-        {broadcast = true, blocksBehind = 3, expireSeconds = 30}
+        transaction: Transaction,
+        config: TransactConfig = {},
     ): Promise<SignTransactionResponse> {
         try {
             const completedTransaction = await this.api.transact(
                 transaction,
-                {broadcast, blocksBehind, expireSeconds}
+                config
             )
 
-            return this.returnEosjsTransaction(broadcast, completedTransaction)
+            return this.returnEosjsTransaction(config.broadcast ?? true, completedTransaction)
         } catch (e) {
             throw new UALWombatError(
                 e.message || 'Unable to sign the given transaction',
