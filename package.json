@@ -15,7 +15,8 @@
     "Fabian Emilius"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc --build tsconfig.json"
+    "build": "rm -rf dist && tsc --build tsconfig.json",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@scatterjs/core": "https://github.com/prospectors/scatterjs-core",
